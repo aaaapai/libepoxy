@@ -114,7 +114,7 @@
  *      3.6. To perform the dynamic query, libGL also must export an entry
  *           point called
  *
- *           void (*glXGetProcAddressARB(const GLubyte *))(); 
+ *           void (*glXGetProcAddressARB(const GLubyte *))();
  *
  *      The full specification of this function is available separately. It
  *      takes the string name of a GL or GLX entry point and returns a pointer
@@ -177,12 +177,12 @@
 #define GLX_LIB "/opt/X11/lib/libGL.1.dylib"
 #define OPENGL_LIB "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
 #define GLES1_LIB "libGLESv1_CM.so"
-#define GLES2_LIB "libGLESv2.so"
+#define GLES3_LIB "libGLESv3.so"
 #elif defined(__ANDROID__)
-#define GLX_LIB "libGLESv2.so"
+#define GLX_LIB "libGLESv3.so"
 #define EGL_LIB "libEGL.so"
 #define GLES1_LIB "libGLESv1_CM.so"
-#define GLES2_LIB "libGLESv2.so"
+#define GLES2_LIB "libGLESv3.so"
 #elif defined(_WIN32)
 #define EGL_LIB "libEGL.dll"
 #define GLES1_LIB "libGLES_CM.dll"
