@@ -165,7 +165,7 @@ endif
 
 # Dependencies
 dl_dep = cc.find_library('dl', required: false)
-gl_dep = cc.find_library('gl', required: false)
+gl_dep = cc.find_library('opengl', required: false)
 egl_dep = cc.find_library('egl', required: false)
 elg_headers_dep = egl_dep.partial_dependency(compile_args: true, includes: true)
 
