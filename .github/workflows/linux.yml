@@ -20,7 +20,7 @@ jobs:
           - '-Dx11=false'
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: >
           sudo apt-get update &&
           sudo apt-get install --no-install-recommends
