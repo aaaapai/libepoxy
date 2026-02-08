@@ -217,6 +217,23 @@
 #error "You will need constructor support for your compiler"
 #endif
 
+// 运行时获取GLES库名称的函数
+static const char* get_gles_library_name(void) {
+    const char* libgl_gles = getenv("LIBGL_GLES");
+    
+    // 如果设置了环境变量，直接使用其值作为库文件名
+    if (libgl_gles && libgl_gles[0] != '\0') {
+        return libgl_gles;
+    }
+    
+    // 未设置环境变量时使用默认值
+#ifdef __ANDROID__
+    return GLES2_LIB;
+#else
+    return GLES2_LIB;
+#endif
+}
+
 struct api {
 #ifndef _WIN32
     /*
