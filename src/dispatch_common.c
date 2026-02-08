@@ -736,7 +736,7 @@ epoxy_gles2_dlsym(const char *name)
     if (epoxy_current_context_is_glx()) {
         return epoxy_get_proc_address(name);
     } else {
-        get_dlopen_handle(&api.gles2_handle, GLES2_LIB, true, true);
+        get_dlopen_handle(&api.gles2_handle, get_gles_library_name(), true, true);
         return do_dlsym(&api.gles2_handle, name, true);
     }
 }
@@ -757,7 +757,7 @@ epoxy_gles3_dlsym(const char *name)
     if (epoxy_current_context_is_glx()) {
         return epoxy_get_proc_address(name);
     } else {
-        if (get_dlopen_handle(&api.gles2_handle, GLES2_LIB, false, true)) {
+        if (get_dlopen_handle(&api.gles2_handle, get_gles_library_name(), false, true)) {
             void *func = do_dlsym(&api.gles2_handle, name, false);
 
             if (func)
