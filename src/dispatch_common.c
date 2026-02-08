@@ -234,6 +234,22 @@ static const char* get_gles_library_name(void) {
 #endif
 }
 
+static const char* get_egl_library_name(void) {
+    const char* libgl_egl = getenv("LIBGL_EGL");
+    
+    // 如果设置了环境变量，直接使用其值作为库文件名
+    if (libgl_egl && libgl_egl[0] != '\0') {
+        return libgl_egl;
+    }
+    
+    // 未设置环境变量时使用默认值
+#ifdef __ANDROID__
+    return EGL_LIB;
+#else
+    return EGL_LIB;
+#endif
+}
+
 struct api {
 #ifndef _WIN32
     /*
@@ -649,7 +665,7 @@ bool
 epoxy_load_egl(bool exit_if_fails, bool load)
 {
 #if PLATFORM_HAS_EGL
-    return get_dlopen_handle(&api.egl_handle, EGL_LIB, exit_if_fails, load);
+    return get_dlopen_handle(&api.egl_handle, get_egl_library_name(), exit_if_fails, load);
 #else
     return false;
 #endif
@@ -840,7 +856,7 @@ epoxy_get_bootstrap_proc_address(const char *name)
      * non-X11 ES2 context from loading a bunch of X11 junk).
      */
 #if PLATFORM_HAS_EGL
-    get_dlopen_handle(&api.egl_handle, EGL_LIB, false, true);
+    get_dlopen_handle(&api.egl_handle, get_egl_library_name(), false, true);
     if (api.egl_handle) {
         int version = 0;
         switch (epoxy_egl_get_current_gl_context_api()) {
